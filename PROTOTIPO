@@ -1,0 +1,21 @@
+#include <DHT.h>     //Cargamos la librería DHT
+#define DHTTYPE DHT11   //Definimos el modelo DHT11
+#define DHTPIN    0     //Se define el pin para conectar el sensor
+DHT dht(DHTPIN, DHTTYPE, 11);
+void setup() {
+  Serial.begin(9900);   //Se inicia la comunicación serial 
+  dht.begin();
+}
+void loop() {
+ float hum = dht.readHumidity(); //Se lee la humedad
+ float tem = dht.readTemperature(); //Se lee la temperatura
+ float temf = dht.readTemperature(true); //Se lee la temperatura
+ //Se imprimen las variables
+  Serial.print(hum);
+  Serial.println("%");
+ Serial.print(tem);
+  Serial.println("C°");
+  Serial.print(temf);
+   Serial.println("F");  
+   delay(2000);
+}
